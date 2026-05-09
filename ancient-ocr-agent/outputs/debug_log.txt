@@ -1,0 +1,49 @@
+/opt/anaconda3/envs/ocr-agent/lib/python3.10/site-packages/langgraph/cache/base/__init__.py:8: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+  from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+/opt/anaconda3/envs/ocr-agent/lib/python3.10/site-packages/torch/utils/cpp_extension.py:28: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging  # type: ignore[attr-defined]
+`Qwen2VLRotaryEmbedding` can now be fully parameterized by passing the model config through the `config` argument. All other arguments will be removed in v4.46
+🚀 初始化 LangGraph Agent...
+
+📝 测试 1: 识别这一页的所有文字
+🔍 [DEBUG] tool_executor_node 执行，tool_calls=[{'tool': 'full_text_ocr_tool', 'args': {'image_path': '/home/ugrad/XZY/中华书局_陈书/陈书.第1册.卷一至卷一六/中华书局_陈书_page_0001.jpg'}}]
+🔍 [DEBUG] 准备调用工具: full_text_ocr_tool
+🔍 [DEBUG] 调用 tool_func.invoke({'image_path': '/home/ugrad/XZY/中华书局_陈书/陈书.第1册.卷一至卷一六/中华书局_陈书_page_0001.jpg'})
+📥 Loading Qwen2-VL-2B Base...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.25s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.08s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.26s/it]
+/opt/anaconda3/envs/ocr-agent/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:601: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.01` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/opt/anaconda3/envs/ocr-agent/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.001` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/opt/anaconda3/envs/ocr-agent/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:623: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
+  warnings.warn(
+🔧 Loading LoRA adapter: ocr from /home/ugrad/XZY/outputs/qwen2vl_ocr_v2_oom_fix/final_model
+✅ [DEBUG] 工具执行成功，结果长度=31
+✅ 路由路径: [{'tool': 'full_text_ocr_tool', 'args': {'image_path': '/home/ugrad/XZY/中华书局_陈书/陈书.第1册.卷一至卷一六/中华书局_陈书_page_0001.jpg'}}]
+📄 输出结果:
+{
+  "full_text_ocr_tool": "<box>(793,116,838,216)</box> 陳書"
+}...
+
+📝 测试 2: 找出"陳書卷一"的坐标
+🔍 [DEBUG] tool_executor_node 执行，tool_calls=[{'tool': 'full_text_ocr_tool', 'args': {'image_path': '/home/ugrad/XZY/中华书局_陈书/陈书.第1册.卷一至卷一六/中华书局_陈书_page_0001.jpg'}}]
+🔍 [DEBUG] 准备调用工具: full_text_ocr_tool
+🔍 [DEBUG] 调用 tool_func.invoke({'image_path': '/home/ugrad/XZY/中华书局_陈书/陈书.第1册.卷一至卷一六/中华书局_陈书_page_0001.jpg'})
+🔧 Loading LoRA adapter: ocr from /home/ugrad/XZY/outputs/qwen2vl_ocr_v2_oom_fix/final_model
+✅ [DEBUG] 工具执行成功，结果长度=31
+✅ 路由路径: [{'tool': 'full_text_ocr_tool', 'args': {'image_path': '/home/ugrad/XZY/中华书局_陈书/陈书.第1册.卷一至卷一六/中华书局_陈书_page_0001.jpg'}}]
+📄 输出结果:
+{
+  "full_text_ocr_tool": "<box>(793,116,838,216)</box> 陳書"
+}...
+
+📝 测试 3: 分析版面结构并导出JSON
+🔍 [DEBUG] tool_executor_node 执行，tool_calls=[{'tool': 'full_text_ocr_tool', 'args': {'image_path': '/home/ugrad/XZY/中华书局_陈书/陈书.第1册.卷一至卷一六/中华书局_陈书_page_0005.jpg'}}]
+🔍 [DEBUG] 准备调用工具: full_text_ocr_tool
+🔍 [DEBUG] 调用 tool_func.invoke({'image_path': '/home/ugrad/XZY/中华书局_陈书/陈书.第1册.卷一至卷一六/中华书局_陈书_page_0005.jpg'})
+🔧 Loading LoRA adapter: ocr from /home/ugrad/XZY/outputs/qwen2vl_ocr_v2_oom_fix/final_model
+✅ [DEBUG] 工具执行成功，结果长度=692
+✅ 路由路径: [{'tool': 'full_text_ocr_tool', 'args': {'image_path': '/home/ugrad/XZY/中华书局_陈书/陈书.第1册.卷一至卷一六/中华书局_陈书_page_0005.jpg'}}]
+📄 输出结果:
+{
+  "full_text_ocr_tool": "<box>(843,162,875,287)</box> 出版說明\n<box>(796,149,836,893)</box> 國史紀傳二百卷﹒未就而卒﹒陸瓛還箸有陳書四十二卷﹒以上這些著作﹒姚氏父子修\n<box>(747,110,785,899)</box> 史時可能參考過﹒但都沒有流傳下來﹒\n<box>(700,150,736,900)</box> 姚察在陳初曾參與梁史的編撰﹒入隋後﹒又在公元五八九年（隋開皇九年）受命編撰\n<box>(651,113,687,901)</box> 梁陳兩朝史﹒沒有成書就死了﹒姚思廉在隋唐兩次受命繼...
